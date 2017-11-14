@@ -1,5 +1,6 @@
 package com.gateway.rz.usersync.controller;
 
+import com.gateway.rz.usersync.entity.MyResponeEntity;
 import com.gateway.rz.usersync.entity.Person;
 import com.gateway.rz.usersync.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -22,14 +23,13 @@ public class PersonController {
 
     @GetMapping("/list/{systemcode}/{state}")
     public ResponseEntity<List<Person>> list(@PathVariable String systemcode, @PathVariable String state){
-        logger.info("=== systemcode = {}, state = {} ===", systemcode, state);
+        logger.info("=== person=> systemcode = {}, state = {} ===", systemcode, state);
         return ResponseEntity.ok(personRepository.findBySystemcodeAndState(systemcode, state));
-
     }
 
     @PutMapping("/setstate")
     public ResponseEntity<Integer> setState(@RequestParam(name = "sid", required = true) String sid, @RequestParam(name = "state", defaultValue = "10") String state){
-        logger.info("=== sid = {}, state = {} ===", sid, state);
+        logger.info("=== person=> sid = {}, state = {} ===", sid, state);
         return ResponseEntity.ok(personRepository.setState(sid, state));
     }
 }

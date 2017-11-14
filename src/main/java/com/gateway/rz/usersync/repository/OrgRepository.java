@@ -14,7 +14,7 @@ import java.util.List;
 public interface OrgRepository extends JpaRepository<Org, String> {
 
     @Query("select t from Org t where ssystemcode = ?1 and state = ?2")
-    List<Person> findBySystemcodeAndState(String systemcode, String state);
+    List<Org> findBySystemcodeAndState(String systemcode, String state);
 
     @Modifying
     @Transactional

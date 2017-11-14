@@ -1,5 +1,6 @@
 package com.gateway.rz.usersync.controller;
 
+import com.gateway.rz.usersync.entity.Org;
 import com.gateway.rz.usersync.entity.Person;
 import com.gateway.rz.usersync.repository.OrgRepository;
 import com.gateway.rz.usersync.repository.PersonRepository;
@@ -21,15 +22,15 @@ public class OrgController {
     OrgRepository orgRepository;
 
     @GetMapping("/list/{systemcode}/{state}")
-    public ResponseEntity<List<Person>> list(@PathVariable String systemcode, @PathVariable String state){
-        logger.info("=== systemcode = {}, state = {} ===", systemcode, state);
+    public ResponseEntity<List<Org>> list(@PathVariable String systemcode, @PathVariable String state){
+        logger.info("=== org=> systemcode = {}, state = {} ===", systemcode, state);
         return ResponseEntity.ok(orgRepository.findBySystemcodeAndState(systemcode, state));
 
     }
 
     @PutMapping("/setstate")
     public ResponseEntity<Integer> setState(@RequestParam(required = true) String sid, @RequestParam(defaultValue = "10") String state){
-        logger.info("=== sid = {}, state = {} ===", sid, state);
+        logger.info("=== org=> sid = {}, state = {} ===", sid, state);
         return ResponseEntity.ok(orgRepository.setState(sid, state));
     }
 }
